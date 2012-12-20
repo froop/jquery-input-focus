@@ -17,6 +17,7 @@
 		while(true){
 			Fo	=	$inputs[j];
 			Fs	=	Fo.style;
+			//$(":hidden")じゃだめ？
 			if	(Fo.type!="hidden" &&
 				Fo.style.visibility!="hidden" &&
 				!Fo.disabled &&
@@ -112,7 +113,7 @@
 
 			if(!blKey){
 				//イベントを伝播しない
-				//IE規定の動作キャンセル
+				//IE規定の動作キャンセル(beep音)
 				if($.browser.msie) {
 					window.event.keyCode = 0;
 				}
