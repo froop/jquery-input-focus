@@ -24,12 +24,12 @@
 				Fs.visibility!="hidden" &&
 				Fs.display!="none"){
 				//対象のオブジェクトを戻す
-				return Fo;
+				return $(Fo);
 			}
 			j=(j+mv+ln) % ln;
 		}
 		//Hitしない場合
-		return $inputs[i];
+		return $inputs.eq(i);
 	}
 
 	function focus($target) {
