@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>jquery.input-focus example</title>
+</head>
+
+<body>
+	<form>
+		<input type="text" value="text1">
+		<input type="password" value="pass1">
+		<select>
+			<option value=""></option>
+			<option value="1">option1</option>
+		</select>
+		<input type="button" value="button1">
+		<input type="checkbox">checkbox1
+		<input type="radio" name="radio1" value="1" checked>radio1
+		<input type="radio" name="radio1" value="2">radio2
+	</form>
+
+	<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="jquery.inputfocus.js"></script>
+	<script type="text/javascript">
+		$("form").inputFocus({
+			enter : true,
+			focusFirst : true
+		});
+	</script>
+</body>
+</html>
