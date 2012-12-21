@@ -66,7 +66,7 @@
 			};
 			var	k	=	e.keyCode;
 			var	s	=	e.shiftKey;
-			var	obj	=	null;
+			var	next	=	null;
 			var blKey	=	true;
 			if (!setting.enter&&k==13) return true;
 			if (!setting.tab&&k==9) return true;
@@ -93,7 +93,7 @@
 					//keyイベントを処理するもののみ抽出
 					if (!blKey){
 						//次のフォームオブジェクト探す
-						obj = Focus_Move(s);
+						next = Focus_Move(s);
 					}
 				break;
 				case 9:		//tab
@@ -103,7 +103,7 @@
 						break;
 					default:
 						//次のフォームオブジェクト探す
-						obj = Focus_Move(s);
+						next = Focus_Move(s);
 						blKey = false;
 						break;
 					}
@@ -117,7 +117,7 @@
 				if($.browser.msie) {
 					window.event.keyCode = 0;
 				}
-				focus(obj);
+				focus(next);
 			}
 			return blKey;
 		};
