@@ -28,8 +28,6 @@
 			}
 			j=(j+mv+ln) % ln;
 		}
-		//Hitしない場合
-		return $inputs.eq(i);
 	}
 
 	function focus($target) {
