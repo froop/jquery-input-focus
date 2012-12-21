@@ -60,19 +60,19 @@
 				var ln = $inputs.length;
 				var i;
 				for (i=0;i<ln;i++){
-					if ($inputs[i]==obj) break;
+					if ($inputs[i]==e.target) break;
 				}
 				return findNextCanFocus($inputs, shift, i);
 			};
 			var	k	=	e.keyCode;
 			var	s	=	e.shiftKey;
-			var	obj	=	e.target;
+			var	obj	=	null;
 			var blKey	=	true;
 			if (!setting.enter&&k==13) return true;
 			if (!setting.tab&&k==9) return true;
 			switch(k){
 				case 13:
-					switch(obj.type){
+					switch(e.target.type){
 					case"button":
 						blKey = false;
 						break;
@@ -80,7 +80,7 @@
 						blKey = true;
 						break;
 					case"radio":case"checkbox":
-//						setTimeout(function(){obj.click();},1)
+//						setTimeout(function(){e.target.click();},1)
 //						blKey = true;
 //						break;
 					case"text":case"select-one":case"select-multiple":
@@ -97,7 +97,7 @@
 					}
 				break;
 				case 9:		//tab
-					switch(obj.type){
+					switch(e.target.type){
 					case"file":
 						blKey = true;
 						break;
