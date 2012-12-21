@@ -8,7 +8,7 @@
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 (function($){
-	function findNextCanFocus($inputs, shift, baseIdx) {
+	function findNextFocusByIndex($inputs, shift, baseIdx) {
 		var ln = $inputs.length;
 		//フォーカスを取得できないものは飛ばす
 		var mv = (shift?-1:1);
@@ -38,7 +38,7 @@
 	}
 
 	function focusFirst($parent) {
-		var $first = findNextCanFocus($(":input", $parent), false, -1);
+		var $first = findNextFocusByIndex($(":input", $parent), false, -1);
 		focus($first);
 	}
 
@@ -59,7 +59,7 @@
 				for (i=0;i<ln;i++){
 					if ($inputs[i]==e.target) break;
 				}
-				return findNextCanFocus($inputs, shift, i);
+				return findNextFocusByIndex($inputs, shift, i);
 			};
 			var	k	=	e.keyCode;
 			var	s	=	e.shiftKey;
