@@ -13,13 +13,13 @@
 		//フォーカスを取得できないものは飛ばす
 		var mv = (shift?-1:1);
 		var j = (ln+baseIdx+mv) % ln;
-		function isFocusable(Fo) {
-			var Fs = Fo.style;
-			return Fo.type!="hidden" &&
-				!Fo.disabled &&
-				Fo.tabIndex!=-1 &&
-				Fs.visibility!="hidden" &&
-				Fs.display!="none";
+		function isFocusable($input) {
+			var style = $input.style;
+			return $input.type!="hidden" &&
+				!$input.disabled &&
+				$input.tabIndex!=-1 &&
+				style.visibility!="hidden" &&
+				style.display!="none";
 		}
 		while(true){
 			if	(isFocusable($inputs[j])){
