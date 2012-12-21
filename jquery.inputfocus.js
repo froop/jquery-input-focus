@@ -13,17 +13,18 @@
 		//フォーカスを取得できないものは飛ばす
 		var mv = (shift?-1:1);
 		var j = (ln+baseIdx+mv) % ln;
-		var Fo,Fs;
-		while(true){
-			Fo	=	$inputs[j];
-			Fs	=	Fo.style;
-			//$(Fo).is(":visible")じゃだめ？
-			if	(Fo.type!="hidden" &&
-				Fo.style.visibility!="hidden" &&
+		var Fo;
+		function isFocusable(Fo) {
+			var Fs = Fo.style;
+			return Fo.type!="hidden" &&
 				!Fo.disabled &&
 				Fo.tabIndex!=-1 &&
 				Fs.visibility!="hidden" &&
-				Fs.display!="none"){
+				Fs.display!="none";
+		}
+		while(true){
+			Fo	=	$inputs[j];
+			if	(isFocusable(Fo)){
 				//対象のオブジェクトを戻す
 				return $(Fo);
 			}
