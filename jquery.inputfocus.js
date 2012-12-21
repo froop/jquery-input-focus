@@ -17,7 +17,7 @@
 		while(true){
 			Fo	=	$inputs[j];
 			Fs	=	Fo.style;
-			//$(":hidden")じゃだめ？
+			//$(Fo).is(":visible")じゃだめ？
 			if	(Fo.type!="hidden" &&
 				Fo.style.visibility!="hidden" &&
 				!Fo.disabled &&
@@ -35,7 +35,7 @@
 
 	function focus($target) {
 		$target.focus();
-		if ($target.select && $target.type != "button") {
+		if ($target.select && !$target.is(":button")) {
 			$target.select();
 		}
 	}
