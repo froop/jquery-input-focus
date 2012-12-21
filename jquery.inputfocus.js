@@ -52,7 +52,7 @@
 		var $inputs = $(":input", this);
 		var method = function(e){
 
-			var Focus_Move = function(shift){
+			var findNextFocusOnKeydown = function(shift){
 				//フォームオブジェクトが何番目か探す
 				var ln = $inputs.length;
 				var i;
@@ -90,7 +90,7 @@
 					//keyイベントを処理するもののみ抽出
 					if (!blKey){
 						//次のフォームオブジェクト探す
-						$next = Focus_Move(s);
+						$next = findNextFocusOnKeydown(s);
 					}
 				break;
 				case 9:		//tab
@@ -100,7 +100,7 @@
 						break;
 					default:
 						//次のフォームオブジェクト探す
-						$next = Focus_Move(s);
+						$next = findNextFocusOnKeydown(s);
 						blKey = false;
 						break;
 					}
