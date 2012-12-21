@@ -50,8 +50,8 @@
 		};
 		var setting = $.extend(defaults,options);
 		var $inputs = $(":input", this);
-		var method = function(e){
 
+		$(this).on("keydown", function (e) {
 			var findNextFocusOnKeydown = function(shift){
 				//フォームオブジェクトが何番目か探す
 				var ln = $inputs.length;
@@ -117,11 +117,6 @@
 				focus($next);
 			}
 			return blKey;
-		};
-
-		$(this).on("keydown", function(e){
-			var ret = method(e);
-			return ret;
 		});
 
 		if (setting.focusFirst) {
