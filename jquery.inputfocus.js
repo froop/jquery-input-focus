@@ -13,7 +13,6 @@
 		//フォーカスを取得できないものは飛ばす
 		var mv = (shift?-1:1);
 		var j = (ln+baseIdx+mv) % ln;
-		var Fo;
 		function isFocusable(Fo) {
 			var Fs = Fo.style;
 			return Fo.type!="hidden" &&
@@ -23,10 +22,9 @@
 				Fs.display!="none";
 		}
 		while(true){
-			Fo	=	$inputs[j];
-			if	(isFocusable(Fo)){
+			if	(isFocusable($inputs[j])){
 				//対象のオブジェクトを戻す
-				return $(Fo);
+				return $($inputs[j]);
 			}
 			j=(j+mv+ln) % ln;
 		}
