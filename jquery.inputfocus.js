@@ -14,17 +14,16 @@
 		var mv = (shift?-1:1);
 		var j = (ln+baseIdx+mv) % ln;
 		function isFocusable($input) {
-			var style = $input.style;
-			return $input.type!="hidden" &&
-				!$input.disabled &&
-				$input.tabIndex!=-1 &&
-				style.visibility!="hidden" &&
-				style.display!="none";
+			return $input.is(":visible") &&
+				$input.is(":enabled") &&
+				$input.css("visibility") != "hidden" &&
+				$input.attr("tabindex") != -1;
 		}
 		while(true){
-			if	(isFocusable($inputs[j])){
+			var $input = $($inputs[j]);
+			if	(isFocusable($input)){
 				//対象のオブジェクトを戻す
-				return $($inputs[j]);
+				return $input;
 			}
 			j=(j+mv+ln) % ln;
 		}
