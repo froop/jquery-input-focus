@@ -11,8 +11,8 @@
 	function findNextFocusByIndex($inputs, shift, baseIdx) {
 		var ln = $inputs.length;
 		//フォーカスを取得できないものは飛ばす
-		var mv = (shift?-1:1);
-		var j = (ln+baseIdx+mv) % ln;
+		var mv = (shift ? -1 : 1);
+		var j = (ln + baseIdx + mv) % ln;
 		function isFocusable($input) {
 			return $input.is(":visible") &&
 				$input.is(":enabled") &&
@@ -51,12 +51,12 @@
 		var $inputs = $(":input", this);
 
 		$(this).on("keydown", function (e) {
-			var findNextFocusOnKeydown = function(shift){
+			var findNextFocusOnKeydown = function(shift) {
 				//フォームオブジェクトが何番目か探す
 				var ln = $inputs.length;
 				var i;
-				for (i=0;i<ln;i++){
-					if ($inputs[i]==e.target) break;
+				for (i = 0; i < ln; i++) {
+					if ($inputs[i] == e.target) break;
 				}
 				return findNextFocusByIndex($inputs, shift, i);
 			};
@@ -64,8 +64,8 @@
 			var	s	=	e.shiftKey;
 			var	$next	=	null;
 			var blKey	=	true;
-			if (!setting.enter&&k==13) return true;
-			if (!setting.tab&&k==9) return true;
+			if (!setting.enter && k == 13) return true;
+			if (!setting.tab && k == 9) return true;
 			switch(k){
 				case 13:
 					switch(e.target.type){
