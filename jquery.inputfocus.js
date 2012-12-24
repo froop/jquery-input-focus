@@ -76,9 +76,6 @@
 						blKey = true;
 						break;
 					case"radio":case"checkbox":
-//						setTimeout(function(){e.target.click();},1)
-//						blKey = true;
-//						break;
 					case"text":case"select-one":case"select-multiple":
 						blKey = false;
 						break;
