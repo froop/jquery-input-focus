@@ -60,7 +60,7 @@
 		var $inputs = $(":input", this);
 
 		$(this).on("keydown", function (event) {
-			var	k	=	event.keyCode;
+			var	keyCode = event.keyCode;
 			var	s	=	event.shiftKey;
 			var target = event.target;
 			var inputType = target.type;
@@ -77,7 +77,7 @@
 			}
 
 			function canMoveFocus() {
-				switch (k) {
+				switch (keyCode) {
 				case 13: // enter
 					switch (inputType) {
 					case "file":
@@ -96,8 +96,8 @@
 				}
 			}
 
-			if (!setting.enter && k == 13) return true;
-			if (!setting.tab && k == 9) return true;
+			if (!setting.enter && keyCode == 13) return true;
+			if (!setting.tab && keyCode == 9) return true;
 			if (canMoveFocus()) {
 				//次のフォームオブジェクト探す
 				$next = findNextFocusOnKeydown(s);
