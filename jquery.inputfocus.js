@@ -60,11 +60,11 @@
 		var $inputs = $(":input", this);
 
 		$(this).on("keydown", function (event) {
-			var keyCode = event.keyCode;
-			var shiftKey = event.shiftKey;
-			var target = event.target;
-			var inputType = target.type;
-			var	$next	=	null;
+			var keyCode = event.keyCode,
+				shiftKey = event.shiftKey,
+				target = event.target,
+				inputType = target.type,
+				$next = null;
 
 			function findNextFocusOnKeydown() {
 				//フォームオブジェクトが何番目か探す
