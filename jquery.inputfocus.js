@@ -71,9 +71,11 @@
 			};
 			var	k	=	e.keyCode;
 			var	s	=	e.shiftKey;
+			var target = e.target;
+			var inputType = target.type;
 			var	$next	=	null;
 
-			function canMoveFocus(inputType) {
+			function canMoveFocus() {
 				switch (k) {
 				case 13:
 					switch (inputType) {
@@ -95,7 +97,7 @@
 
 			if (!setting.enter && k == 13) return true;
 			if (!setting.tab && k == 9) return true;
-			if (canMoveFocus(e.target.type)) {
+			if (canMoveFocus()) {
 				//次のフォームオブジェクト探す
 				$next = findNextFocusOnKeydown(s);
 			}
