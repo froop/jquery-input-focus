@@ -97,8 +97,16 @@
 				}
 			}
 
-			if (!setting.enter && keyCode == 13) return true;
-			if (!setting.tab && keyCode == 9) return true;
+			if (!setting.enter && keyCode == 13) {
+				return true;
+			}
+			if (!setting.tab && keyCode == 9) {
+				return true;
+			}
+			if (!$(target).is(":input")) {
+				return true;
+			}
+
 			if (canMoveFocus()) {
 				//次のフォームオブジェクト探す
 				$next = findNextFocusOnKeydown();
