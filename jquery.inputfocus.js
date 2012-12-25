@@ -63,7 +63,7 @@
 			var keyCode = event.keyCode,
 				shiftKey = event.shiftKey,
 				target = event.target,
-				inputType = target.type,
+				type = target.type,
 				$next = null;
 
 			// 次のフォーカス可能要素を探す
@@ -80,7 +80,7 @@
 			function canMoveFocus() {
 				switch (keyCode) {
 				case 13: // enter
-					switch (inputType) {
+					switch (type) {
 					case "file":
 					case "textarea":
 						return false;
@@ -88,7 +88,7 @@
 						return true;
 					}
 				case 9: // tab
-					switch (inputType) {
+					switch (type) {
 					case "file":
 						return false;
 					default:
@@ -110,7 +110,7 @@
 			//IEのみ問題回避
 			if($.browser.msie) {
 				//次フォーカスがtext以外だと選択範囲の青色が残るため解除
-				if (inputType === "text" || inputType === "password") {
+				if (type === "text" || type === "password") {
 					function deselectTextForIE() {
 						var range = target.createTextRange();
 						range.moveStart("character", $(target).val().length);
