@@ -81,7 +81,7 @@
 				return findNextFocusByIndex($inputs, shiftKey, i);
 			}
 
-			function canMoveFocus() {
+			function isMoveFocus() {
 				function isMoveFocusKey() {
 					if (setting.enter && keyCode === 13) {
 						return true;
@@ -109,7 +109,7 @@
 				return isMoveFocusKey() && isMoveFocusField();
 			}
 
-			if (canMoveFocus()) {
+			if (isMoveFocus()) {
 				//次のフォームオブジェクト探す
 				$next = findNextFocusOnKeydown();
 			}
