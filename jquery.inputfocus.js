@@ -60,24 +60,25 @@
 		var $inputs = $(":input", this);
 
 		$(this).on("keydown", function (e) {
-			var findNextFocusOnKeydown = function(shift) {
-				//フォームオブジェクトが何番目か探す
-				var ln = $inputs.length;
-				var i;
-				for (i = 0; i < ln; i++) {
-					if ($inputs[i] == e.target) break;
-				}
-				return findNextFocusByIndex($inputs, shift, i);
-			};
 			var	k	=	e.keyCode;
 			var	s	=	e.shiftKey;
 			var target = e.target;
 			var inputType = target.type;
 			var	$next	=	null;
 
+			function findNextFocusOnKeydown(shift) {
+				//フォームオブジェクトが何番目か探す
+				var ln = $inputs.length;
+				var i;
+				for (i = 0; i < ln; i++) {
+					if ($inputs[i] == target) break;
+				}
+				return findNextFocusByIndex($inputs, shift, i);
+			}
+
 			function canMoveFocus() {
 				switch (k) {
-				case 13:
+				case 13: // enter
 					switch (inputType) {
 					case "file":
 					case "textarea":
@@ -110,8 +111,8 @@
 				//次フォーカスがtext以外だと選択範囲の青色が残るため解除
 				if (inputType === "text" || inputType === "password") {
 					function deselectTextForIE() {
-						var range = e.target.createTextRange();
-						range.moveStart("character", $(e.target).val().length);
+						var range = target.createTextRange();
+						range.moveStart("character", $(target).val().length);
 						range.select();
 					}
 					deselectTextForIE();
