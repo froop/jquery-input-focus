@@ -52,9 +52,9 @@
 
 	$.fn.inputFocus = function(options){
 		var defaults = {
-			"enter":false
-			,"tab":false
-			,"focusFirst":false
+			"enter" : false,
+			"tab" : false,
+			"focusFirst" : false
 		};
 		var setting = $.extend(defaults, options);
 		var $inputs = $(":input", this);
