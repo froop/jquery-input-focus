@@ -81,25 +81,32 @@
 				return findNextFocusByIndex($inputs, shiftKey, i);
 			}
 
-			// 現フォーカス要素がenter/tabキーによるフォーカス移動に対応するか
 			function canMoveFocus() {
-				if (!$(target).is(":input")) {
+				function isMoveFocusKey() {
+					if (setting.enter && keyCode === 13) {
+						return true;
+					}
+					if (setting.tab && keyCode === 9) {
+						return true;
+					}
 					return false;
 				}
-				if (type === "file") {
-					return false;
-				}
-				if (type === "textarea" && keyCode === 13) {
-					return false;
-				}
-				return true;
-			}
 
-			if (!setting.enter && keyCode === 13) {
-				return true;
-			}
-			if (!setting.tab && keyCode === 9) {
-				return true;
+				// 現フォーカス要素がenter/tabキーによるフォーカス移動に対応するか
+				function isMoveFocusField() {
+					if (!$(target).is(":input")) {
+						return false;
+					}
+					if (type === "file") {
+						return false;
+					}
+					if (type === "textarea" && keyCode === 13) {
+						return false;
+					}
+					return true;
+				}
+
+				return isMoveFocusKey() && isMoveFocusField();
 			}
 
 			if (canMoveFocus()) {
