@@ -7,7 +7,10 @@
  *
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-(function($){
+/*global jQuery, window */
+(function ($) {
+	"use strict";
+
 	function findNextFocusByIndex($inputs, shift, baseIdx) {
 		var ln = $inputs.length;
 		//フォーカスを取得できないものは飛ばす
@@ -17,8 +20,8 @@
 		function isFocusable($input) {
 			return $input.is(":visible") &&
 				$input.is(":enabled") &&
-				$input.css("visibility") != "hidden" &&
-				$input.attr("tabindex") != -1;
+				$input.css("visibility") !== "hidden" &&
+				$input.attr("tabindex") !== "-1";
 		}
 		if (ln === 0) {
 			return null;
@@ -71,7 +74,9 @@
 				var ln = $inputs.length;
 				var i;
 				for (i = 0; i < ln; i++) {
-					if ($inputs[i] == target) break;
+					if ($inputs[i] === target) {
+						break;
+					}
 				}
 				return findNextFocusByIndex($inputs, shiftKey, i);
 			}
@@ -87,6 +92,7 @@
 					default:
 						return true;
 					}
+					break;
 				case 9: // tab
 					switch (type) {
 					case "file":
@@ -94,13 +100,14 @@
 					default:
 						return true;
 					}
+					break;
 				}
 			}
 
-			if (!setting.enter && keyCode == 13) {
+			if (!setting.enter && keyCode === 13) {
 				return true;
 			}
-			if (!setting.tab && keyCode == 9) {
+			if (!setting.tab && keyCode === 9) {
 				return true;
 			}
 			if (!$(target).is(":input")) {
@@ -119,11 +126,11 @@
 			if($.browser.msie) {
 				//次フォーカスがtext以外だと選択範囲の青色が残るため解除
 				if (type === "text" || type === "password") {
-					function deselectTextForIE() {
+					var deselectTextForIE = function () {
 						var range = target.createTextRange();
 						range.moveStart("character", $(target).val().length);
 						range.select();
-					}
+					};
 					deselectTextForIE();
 				}
 
