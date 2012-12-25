@@ -56,24 +56,24 @@
 			,"tab":false
 			,"focusFirst":false
 		};
-		var setting = $.extend(defaults,options);
+		var setting = $.extend(defaults, options);
 		var $inputs = $(":input", this);
 
 		$(this).on("keydown", function (event) {
-			var	keyCode = event.keyCode;
-			var	s	=	event.shiftKey;
+			var keyCode = event.keyCode;
+			var shiftKey = event.shiftKey;
 			var target = event.target;
 			var inputType = target.type;
 			var	$next	=	null;
 
-			function findNextFocusOnKeydown(shift) {
+			function findNextFocusOnKeydown() {
 				//フォームオブジェクトが何番目か探す
 				var ln = $inputs.length;
 				var i;
 				for (i = 0; i < ln; i++) {
 					if ($inputs[i] == target) break;
 				}
-				return findNextFocusByIndex($inputs, shift, i);
+				return findNextFocusByIndex($inputs, shiftKey, i);
 			}
 
 			function canMoveFocus() {
@@ -100,7 +100,7 @@
 			if (!setting.tab && keyCode == 9) return true;
 			if (canMoveFocus()) {
 				//次のフォームオブジェクト探す
-				$next = findNextFocusOnKeydown(s);
+				$next = findNextFocusOnKeydown();
 			}
 			if (!$next) {
 				return true;
