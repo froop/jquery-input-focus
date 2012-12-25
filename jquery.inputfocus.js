@@ -78,15 +78,8 @@
 			switch(k){
 				case 13:
 					switch(e.target.type){
-					case"button":
-						blKey = false;
-						break;
 					case"file":case"textarea":
 						blKey = true;
-						break;
-					case"radio":case"checkbox":
-					case"text":case"select-one":case"select-multiple":
-						blKey = false;
 						break;
 					default:
 						blKey = false;
