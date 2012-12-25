@@ -99,28 +99,29 @@
 				//次のフォームオブジェクト探す
 				$next = findNextFocusOnKeydown(s);
 			}
-
-			if ($next) {
-				//イベントを伝播しない
-				if($.browser.msie) {
-					//次フォーカスがtext以外だと選択範囲の青色が残るため解除
-					if (e.target.type === "text") {
-						function deselectTextForIE() {
-							var range = e.target.createTextRange();
-							range.moveStart("character", $(e.target).val().length);
-							range.select();
-						}
-						deselectTextForIE();
-					}
-
-					//IE規定の動作キャンセル(beep音)
-					window.event.keyCode = 0;
-				}
-				focus($next);
-				return false;
-			} else {
+			if (!$next) {
 				return true;
 			}
+
+			//IEのみ問題回避
+			if($.browser.msie) {
+				//次フォーカスがtext以外だと選択範囲の青色が残るため解除
+				if (e.target.type === "text") {
+					function deselectTextForIE() {
+						var range = e.target.createTextRange();
+						range.moveStart("character", $(e.target).val().length);
+						range.select();
+					}
+					deselectTextForIE();
+				}
+
+				//IE規定の動作キャンセル(beep音)
+				window.event.keyCode = 0;
+			}
+
+			focus($next);
+			//イベントを伝播しない
+			return false;
 		});
 
 		if (setting.focusFirst) {
