@@ -66,8 +66,8 @@
 				inputType = target.type,
 				$next = null;
 
+			// 次のフォーカス可能要素を探す
 			function findNextFocusOnKeydown() {
-				//フォームオブジェクトが何番目か探す
 				var ln = $inputs.length;
 				var i;
 				for (i = 0; i < ln; i++) {
@@ -76,6 +76,7 @@
 				return findNextFocusByIndex($inputs, shiftKey, i);
 			}
 
+			// 現フォーカス要素がenterキーによるフォーカス移動に対応するか
 			function canMoveFocus() {
 				switch (keyCode) {
 				case 13: // enter
