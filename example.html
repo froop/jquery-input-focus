@@ -3,10 +3,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>jquery.inputfocus.js example</title>
+	<style>
+		/* for Firefox */
+		input[type="radio"]:focus,
+		input[type="checkbox"]:focus {
+			outline: dotted 1px black;
+		}
+	</style>
 </head>
 
 <body>
-	<form>
+	<form id="form1">
 		<input type="text" value="text1" style="width:3em">
 		<input type="text" value="text2" disabled style="width:3em">
 		<input type="text" value="text3" style="display:none">
@@ -22,16 +29,29 @@
 		<input type="checkbox">checkbox1
 		<input type="radio" name="radio1" value="1" checked>radio1
 		<input type="radio" name="radio1" value="2">radio2
-		<input type="text" tabindex="-1" value="text1" style="width:3em">
+		<input type="text" tabindex="-1" value="tabindex=-1" style="width:6em">
 	</form>
+
+	<form id="single-input-form">
+		<input type="text" value="independent" style="width:6em">
+		<a href="javascript:$('#single-input-form').inputFocusFirst()">focus</a>
+	</form>
+
+	<form id="empty-form"></form>
 
 	<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
 	<script type="text/javascript" src="jquery.inputfocus.js"></script>
 	<script type="text/javascript">
-		$("form").inputFocus({
+		$("#form1").inputFocus({
 			enter : true,
 			focusFirst : true
 		});
+
+		$("#single-input-form").inputFocus({
+			enter : true
+		});
+
+		$("#empty-form").inputFocusFirst();
 	</script>
 </body>
 </html>

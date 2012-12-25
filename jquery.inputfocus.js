@@ -13,19 +13,26 @@
 		//フォーカスを取得できないものは飛ばす
 		var mv = (shift ? -1 : 1);
 		var j = (ln + baseIdx + mv) % ln;
+		var guard = j; //無限ループ防止
 		function isFocusable($input) {
 			return $input.is(":visible") &&
 				$input.is(":enabled") &&
 				$input.css("visibility") != "hidden" &&
 				$input.attr("tabindex") != -1;
 		}
+		if (ln === 0) {
+			return null;
+		}
 		while(true){
 			var $input = $($inputs[j]);
-			if	(isFocusable($input)){
+			if	(isFocusable($input)) {
 				//対象のオブジェクトを戻す
 				return $input;
 			}
-			j=(j+mv+ln) % ln;
+			j = (j + mv + ln) % ln;
+			if (j === guard) {
+				return null;
+			}
 		}
 	}
 
@@ -38,7 +45,9 @@
 
 	function focusFirst($parent) {
 		var $first = findNextFocusByIndex($(":input", $parent), false, -1);
-		focus($first);
+		if ($first) {
+			focus($first);
+		}
 	}
 
 	$.fn.inputFocus = function(options){
@@ -104,7 +113,7 @@
 				break;
 			}
 
-			if(!blKey){
+			if(!blKey && $next){
 				//イベントを伝播しない
 				if($.browser.msie) {
 					//次フォーカスがtext以外だと選択範囲の青色が残るため解除
