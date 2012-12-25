@@ -82,11 +82,14 @@
 			}
 
 			function isMoveFocus() {
+				var KEY_ENTER = 13,
+					KEY_TAB = 9;
+
 				function isMoveFocusKey() {
-					if (setting.enter && keyCode === 13) {
+					if (setting.enter && keyCode === KEY_ENTER) {
 						return true;
 					}
-					if (setting.tab && keyCode === 9) {
+					if (setting.tab && keyCode === KEY_TAB) {
 						return true;
 					}
 					return false;
@@ -100,7 +103,7 @@
 					if (type === "file") {
 						return false;
 					}
-					if (type === "textarea" && keyCode === 13) {
+					if (type === "textarea" && keyCode === KEY_ENTER) {
 						return false;
 					}
 					return true;
