@@ -83,25 +83,13 @@
 
 			// 現フォーカス要素がenterキーによるフォーカス移動に対応するか
 			function canMoveFocus() {
-				switch (keyCode) {
-				case 13: // enter
-					switch (type) {
-					case "file":
-					case "textarea":
-						return false;
-					default:
-						return true;
-					}
-					break;
-				case 9: // tab
-					switch (type) {
-					case "file":
-						return false;
-					default:
-						return true;
-					}
-					break;
+				if (type === "file") {
+					return false;
 				}
+				if (type === "textarea" && keyCode === 13) {
+					return false;
+				}
+				return true;
 			}
 
 			if (!setting.enter && keyCode === 13) {
