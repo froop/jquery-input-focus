@@ -72,41 +72,35 @@
 			var	k	=	e.keyCode;
 			var	s	=	e.shiftKey;
 			var	$next	=	null;
-			var blKey	=	true;
-			if (!setting.enter && k == 13) return true;
-			if (!setting.tab && k == 9) return true;
-			switch(k){
-				case 13:
-					switch(e.target.type){
-					case"file":case"textarea":
-						blKey = true;
-						break;
-					default:
-						blKey = false;
-						break;
-					}
-					//keyイベントを処理するもののみ抽出
-					if (!blKey){
-						//次のフォームオブジェクト探す
-						$next = findNextFocusOnKeydown(s);
-					}
-				break;
-				case 9:		//tab
-					switch(e.target.type){
-					case"file":
-						blKey = true;
-						break;
-					default:
-						//次のフォームオブジェクト探す
-						$next = findNextFocusOnKeydown(s);
-						blKey = false;
-						break;
-					}
 
-				break;
+			function canMoveFocus(inputType) {
+				switch (k) {
+				case 13:
+					switch (inputType) {
+					case "file":
+					case "textarea":
+						return false;
+					default:
+						return true;
+					}
+				case 9: // tab
+					switch (inputType) {
+					case "file":
+						return false;
+					default:
+						return true;
+					}
+				}
 			}
 
-			if(!blKey && $next){
+			if (!setting.enter && k == 13) return true;
+			if (!setting.tab && k == 9) return true;
+			if (canMoveFocus(e.target.type)) {
+				//次のフォームオブジェクト探す
+				$next = findNextFocusOnKeydown(s);
+			}
+
+			if ($next) {
 				//イベントを伝播しない
 				if($.browser.msie) {
 					//次フォーカスがtext以外だと選択範囲の青色が残るため解除
@@ -123,8 +117,10 @@
 					window.event.keyCode = 0;
 				}
 				focus($next);
+				return false;
+			} else {
+				return true;
 			}
-			return blKey;
 		});
 
 		if (setting.focusFirst) {
