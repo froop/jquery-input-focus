@@ -106,8 +106,18 @@
 
 			if(!blKey){
 				//イベントを伝播しない
-				//IE規定の動作キャンセル(beep音)
 				if($.browser.msie) {
+					//次フォーカスがtext以外だと選択範囲の青色が残るため解除
+					if (e.target.type === "text") {
+						function deselectTextForIE() {
+							var range = e.target.createTextRange();
+							range.moveStart("character", $(e.target).val().length);
+							range.select();
+						}
+						deselectTextForIE();
+					}
+
+					//IE規定の動作キャンセル(beep音)
 					window.event.keyCode = 0;
 				}
 				focus($next);
