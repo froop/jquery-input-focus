@@ -108,7 +108,7 @@
 			//IEのみ問題回避
 			if($.browser.msie) {
 				//次フォーカスがtext以外だと選択範囲の青色が残るため解除
-				if (e.target.type === "text") {
+				if (inputType === "text" || inputType === "password") {
 					function deselectTextForIE() {
 						var range = e.target.createTextRange();
 						range.moveStart("character", $(e.target).val().length);
