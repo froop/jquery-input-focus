@@ -53,7 +53,7 @@
 		}
 	}
 
-	$.fn.inputFocus = function(options){
+	$.fn.inputFocus = function (options) {
 		var defaults = {
 			"enter" : false,
 			"tab" : false,
@@ -144,9 +144,12 @@
 		if (setting.focusFirst) {
 			focusFirst(this);
 		}
+
+		return this;
 	};
 
 	$.fn.inputFocusFirst = function () {
 		focusFirst(this);
+		return this;
 	};
 })(jQuery);

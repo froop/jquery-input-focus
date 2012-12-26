@@ -34,7 +34,7 @@
 
 	<form id="single-input-form">
 		<input type="text" value="independent" style="width:6em">
-		<a href="javascript:$('#single-input-form').inputFocusFirst()">focus</a>
+		<a id="focus-link" href="javascript:void(0)">focus</a>
 	</form>
 
 	<form id="empty-form"></form>
@@ -50,7 +50,17 @@
 
 		$("#single-input-form").inputFocus({
 			enter : true
+		}).css({
+			backgroundColor : "lightgray"
 		});
+
+		$("#focus-link").on("click", function () {
+			$('#single-input-form')
+				.inputFocusFirst()
+				.css({
+					backgroundColor: "yellow"
+				});
+		})
 
 		$("#empty-form").inputFocusFirst();
 	</script>
