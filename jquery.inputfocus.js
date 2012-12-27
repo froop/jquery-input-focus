@@ -62,7 +62,7 @@
 		var setting = $.extend(defaults, options);
 		var $inputs = $(":input", this);
 
-		$(this).on("keydown", function (event) {
+		this.on("keydown", function (event) {
 			var keyCode = event.keyCode,
 				shiftKey = event.shiftKey,
 				target = event.target,
