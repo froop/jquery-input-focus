@@ -1,7 +1,7 @@
 /*
  * jquery.inputfocus.js - jQuery plugin.
  *
- * Modified by froop http://github.com/froop
+ * Modified by froop http://github.com/froop/jquery-input-focus
  * Created by Hidepyon http://d.hatena.ne.jp/Hidepyon/
  *   See: http://d.hatena.ne.jp/Hidepyon/20090903/1251988911
  *
