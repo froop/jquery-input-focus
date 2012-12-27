@@ -54,15 +54,16 @@
 	}
 
 	$.fn.inputFocus = function (options) {
+		var $elements = this;
 		var defaults = {
 			"enter" : false,
 			"tab" : false,
 			"focusFirst" : false
 		};
 		var setting = $.extend(defaults, options);
-		var $inputs = $(":input", this);
+		var $inputs = $(":input", $elements);
 
-		this.on("keydown", function (event) {
+		$elements.on("keydown", function (event) {
 			var keyCode = event.keyCode,
 				shiftKey = event.shiftKey,
 				target = event.target,
@@ -142,14 +143,15 @@
 		});
 
 		if (setting.focusFirst) {
-			focusFirst(this);
+			focusFirst($elements);
 		}
 
 		return this;
 	};
 
 	$.fn.inputFocusFirst = function () {
-		focusFirst(this);
+		var $elements = this;
+		focusFirst($elements);
 		return this;
 	};
 })(jQuery);
