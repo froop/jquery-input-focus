@@ -13,30 +13,29 @@
 
 	function findNextFocusByIndex($inputs, shift, baseIdx) {
 		var ln = $inputs.length;
-		//フォーカスを取得できないものは飛ばす
 		var mv = (shift ? -1 : 1);
 		var j = (ln + baseIdx + mv) % ln;
 		var guard = j; //無限ループ防止
+
 		function isFocusable($input) {
 			return $input.is(":visible") &&
 				$input.is(":enabled") &&
 				$input.css("visibility") !== "hidden" &&
 				$input.attr("tabindex") !== "-1";
 		}
+
 		if (ln === 0) {
 			return null;
 		}
-		while(true){
+		do {
 			var $input = $($inputs[j]);
 			if	(isFocusable($input)) {
 				//対象のオブジェクトを戻す
 				return $input;
 			}
 			j = (j + mv + ln) % ln;
-			if (j === guard) {
-				return null;
-			}
-		}
+		} while (j !== guard);
+		return null;
 	}
 
 	function focus($target) {
