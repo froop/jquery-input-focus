@@ -31,15 +31,16 @@
 			return (ln + before + mv) % ln;
 		}
 
-		guard = toNextIndex(baseIdx);
-		j = baseIdx;
-		while ((j = toNextIndex(j)) !== guard) {
+		j = toNextIndex(baseIdx);
+		guard = j;
+		do {
 			var $input = $($inputs[j]);
 			if	(isFocusable($input)) {
 				//対象のオブジェクトを戻す
 				return $input;
 			}
-		};
+			j = toNextIndex(j);
+		} while (j !== guard);
 		//対象オブジェクトなし
 		return null;
 	}
