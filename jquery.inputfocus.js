@@ -13,7 +13,6 @@
 
 	function findNextFocusByIndex($inputs, shift, baseIdx) {
 		var ln = $inputs.length,
-			mv = (shift ? -1 : 1),
 			j, guard;
 
 		function isFocusable($input) {
@@ -23,11 +22,16 @@
 				$input.attr("tabindex") !== "-1";
 		}
 
+		function toNextIndex(before) {
+			var mv = (shift ? -1 : 1);
+			return (ln + before + mv) % ln;
+		}
+
 		if (ln === 0) {
 			return null;
 		}
 
-		j = (ln + baseIdx + mv) % ln;
+		j = toNextIndex(baseIdx);
 		guard = j;
 		do {
 			var $input = $($inputs[j]);
@@ -35,7 +39,7 @@
 				//対象のオブジェクトを戻す
 				return $input;
 			}
-			j = (j + mv + ln) % ln;
+			j = toNextIndex(j);
 		} while (j !== guard);
 		return null;
 	}
