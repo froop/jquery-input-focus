@@ -33,7 +33,8 @@
 				//対象のオブジェクトを戻す
 				return $input;
 			}
-		} while ((j = (j + mv + ln) % ln) !== guard);
+			j = (j + mv + ln) % ln;
+		} while (j !== guard);
 		return null;
 	}
 
