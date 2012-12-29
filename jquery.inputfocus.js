@@ -12,10 +12,9 @@
 	"use strict";
 
 	function findNextFocusByIndex($inputs, shift, baseIdx) {
-		var ln = $inputs.length;
-		var mv = (shift ? -1 : 1);
-		var j = (ln + baseIdx + mv) % ln;
-		var guard = j; //無限ループ防止
+		var ln = $inputs.length,
+			mv = (shift ? -1 : 1),
+			j, guard;
 
 		function isFocusable($input) {
 			return $input.is(":visible") &&
@@ -27,6 +26,9 @@
 		if (ln === 0) {
 			return null;
 		}
+
+		j = (ln + baseIdx + mv) % ln;
+		guard = j;
 		do {
 			var $input = $($inputs[j]);
 			if	(isFocusable($input)) {
