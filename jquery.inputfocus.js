@@ -11,24 +11,24 @@
 (function ($) {
 	"use strict";
 
+	function isFocusable($input) {
+		return $input.is(":visible") &&
+			$input.is(":enabled") &&
+			$input.css("visibility") !== "hidden" &&
+			$input.attr("tabindex") !== "-1";
+	}
+
 	function findNextFocusByIndex($inputs, shift, baseIdx) {
 		var ln = $inputs.length,
 			j, guard;
 
-		function isFocusable($input) {
-			return $input.is(":visible") &&
-				$input.is(":enabled") &&
-				$input.css("visibility") !== "hidden" &&
-				$input.attr("tabindex") !== "-1";
+		if (ln === 0) {
+			return null;
 		}
 
 		function toNextIndex(before) {
 			var mv = (shift ? -1 : 1);
 			return (ln + before + mv) % ln;
-		}
-
-		if (ln === 0) {
-			return null;
 		}
 
 		guard = toNextIndex(baseIdx);
