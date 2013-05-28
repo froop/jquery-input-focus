@@ -67,10 +67,10 @@
 			"focusFirst" : false
 		};
 		var setting = $.extend(defaults, options);
-		var $inputs = $(":input", $elements);
 
 		$elements.on("keydown", function (event) {
-			var keyCode = event.keyCode,
+			var $inputs = $(":input", $elements),
+				keyCode = event.keyCode,
 				shiftKey = event.shiftKey,
 				target = event.target,
 				type = target.type,
