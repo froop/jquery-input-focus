@@ -15,6 +15,7 @@
 		return $input.is(":visible") &&
 			$input.is(":enabled") &&
 			$input.css("visibility") !== "hidden" &&
+			$input.attr("type") != "hidden" && // for IE bug ?
 			$input.attr("tabindex") !== "-1";
 	}
 
