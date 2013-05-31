@@ -16,7 +16,8 @@
 			$input.is(":enabled") &&
 			$input.css("visibility") !== "hidden" &&
 			$input.attr("type") != "hidden" && // for IE bug ?
-			$input.attr("tabindex") !== "-1";
+			$input.attr("tabindex") !== "-1" &&
+			!$input.prop("readonly");
 	}
 
 	function findNextFocusByIndex($inputs, shift, baseIdx) {
