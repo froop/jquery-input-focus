@@ -25,7 +25,7 @@
 			!$input.prop("readonly");
 	}
 
-	function findNextFocusByIndex($inputs, reverse, baseIdx) {
+	function findNextFocusByIndex($inputs, reverse, loop, baseIdx) {
 		var ln = $inputs.length,
 			j, guard;
 
@@ -35,7 +35,14 @@
 
 		function toNextIndex(before) {
 			var mv = (reverse ? -1 : 1);
-			return (ln + before + mv) % ln;
+			var next = before + mv;
+			if (next >= 0 && next < ln) {
+				return next;
+			} else if (loop) {
+				return (ln + before + mv) % ln;
+			} else {
+				return before;
+			}
 		}
 
 		j = toNextIndex(baseIdx);
@@ -63,7 +70,7 @@
 	}
 
 	function focusFirst($parent) {
-		var $first = findNextFocusByIndex($(":input", $parent), false, -1);
+		var $first = findNextFocusByIndex($(":input", $parent), false, true, -1);
 		if ($first) {
 			focus($first);
 		}
@@ -75,7 +82,8 @@
 			"enter" : false,
 			"tab" : false,
 			"upDown" : false,
-			"focusFirst" : false
+			"focusFirst" : false,
+			"loop" : true
 		};
 		var setting = $.extend(defaults, options);
 
@@ -97,7 +105,7 @@
 						break;
 					}
 				}
-				return findNextFocusByIndex($inputs, reverse, i);
+				return findNextFocusByIndex($inputs, reverse, setting.loop, i);
 			}
 
 			function isMoveFocus() {
