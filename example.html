@@ -24,6 +24,11 @@
 		<select>
 			<option value=""></option>
 			<option value="1">option1</option>
+			<option value="2">option2</option>
+		</select>
+		<select size="2" multiple>
+			<option value="1">option1</option>
+			<option value="2">option2</option>
 		</select>
 		<input type="button" value="button1">
 		<button>button2</button>
@@ -47,6 +52,7 @@
 		$("#form1").inputFocus({
 			enter : true,
 			tab : true,
+			upDown : true,
 			focusFirst : true
 		});
 

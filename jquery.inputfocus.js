@@ -11,6 +11,11 @@
 (function ($) {
 	"use strict";
 
+	var KEY_ENTER = 13,
+		KEY_TAB = 9,
+		KEY_UP = 38,
+		KEY_DOWN = 40;
+
 	function isFocusable($input) {
 		return $input.is(":visible") &&
 			$input.is(":enabled") &&
@@ -20,7 +25,7 @@
 			!$input.prop("readonly");
 	}
 
-	function findNextFocusByIndex($inputs, shift, baseIdx) {
+	function findNextFocusByIndex($inputs, reverse, baseIdx) {
 		var ln = $inputs.length,
 			j, guard;
 
@@ -29,7 +34,7 @@
 		}
 
 		function toNextIndex(before) {
-			var mv = (shift ? -1 : 1);
+			var mv = (reverse ? -1 : 1);
 			return (ln + before + mv) % ln;
 		}
 
@@ -48,10 +53,13 @@
 	}
 
 	function focus($target) {
-		$target.focus();
-		if ($target.select && !$target.is(":button")) {
-			$target.select();
-		}
+		// 移動先でkeydownが起こらないようにsetTimeoutする。Firefoxのみの問題
+		setTimeout(function () {
+			$target.focus();
+			if ($target.select && !$target.is(":button")) {
+				$target.select();
+			}
+		}, 0);
 	}
 
 	function focusFirst($parent) {
@@ -66,6 +74,7 @@
 		var defaults = {
 			"enter" : false,
 			"tab" : false,
+			"upDown" : false,
 			"focusFirst" : false
 		};
 		var setting = $.extend(defaults, options);
@@ -80,6 +89,7 @@
 
 			// 次のフォーカス可能要素を探す
 			function findNextFocusOnKeydown() {
+				var reverse = shiftKey || keyCode === KEY_UP;
 				var ln = $inputs.length;
 				var i;
 				for (i = 0; i < ln; i++) {
@@ -87,18 +97,22 @@
 						break;
 					}
 				}
-				return findNextFocusByIndex($inputs, shiftKey, i);
+				return findNextFocusByIndex($inputs, reverse, i);
 			}
 
 			function isMoveFocus() {
-				var KEY_ENTER = 13,
-					KEY_TAB = 9;
+				function isKeyUpDown() {
+					return keyCode === KEY_UP || keyCode === KEY_DOWN;
+				}
 
 				function isMoveFocusKey() {
 					if (setting.enter && keyCode === KEY_ENTER) {
 						return true;
 					}
 					if (setting.tab && keyCode === KEY_TAB) {
+						return true;
+					}
+					if (setting.upDown && isKeyUpDown()) {
 						return true;
 					}
 					return false;
@@ -112,7 +126,11 @@
 					if (type === "file") {
 						return false;
 					}
-					if (type === "textarea" && keyCode === KEY_ENTER) {
+					if (type === "textarea" && keyCode !== KEY_TAB) {
+						return false;
+					}
+					if ((type === "select-one" || type === "select-multiple") &&
+							isKeyUpDown()) {
 						return false;
 					}
 					return true;
