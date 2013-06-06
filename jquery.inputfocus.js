@@ -149,7 +149,7 @@
 					return false;
 				}
 
-				// 現フォーカス要素がenter/tabキーによるフォーカス移動に対応するか
+				// 現フォーカス要素がフォーカス移動に対応するか
 				function isMoveFocusField() {
 					if (!$(target).is(":input")) {
 						return false;
