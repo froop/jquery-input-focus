@@ -5,6 +5,8 @@
  * Created by Hidepyon http://d.hatena.ne.jp/Hidepyon/
  *   See: http://d.hatena.ne.jp/Hidepyon/20090903/1251988911
  *
+ * Copyright (c) 2011 Hidepyon
+ * Copyright (c) 2012, 2013 froop
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 /*global jQuery, window */
