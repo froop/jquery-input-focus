@@ -13,6 +13,11 @@
 
 /// <reference path="d.ts/jquery.d.ts" />
 
+interface JQuery {
+    inputFocus(options:InputFocusOptions): JQuery;
+    inputFocusFirst(): JQuery;
+}
+
 interface InputFocusOptions {
     /** By Enter Key */
     enter?: boolean;
@@ -26,11 +31,6 @@ interface InputFocusOptions {
     focusFirst?: boolean;
     /** Loop Focus */
     loop?: boolean;
-}
-
-interface JQuery {
-    inputFocus(options:InputFocusOptions): JQuery;
-    inputFocusFirst(): JQuery;
 }
 
 module JQueryInputFocus {
@@ -121,7 +121,7 @@ module JQueryInputFocus {
     }
 
     $.fn.inputFocus = function (options:InputFocusOptions):any {
-        var $elements = <JQuery> this;
+        var $elements = <JQuery>this;
         var defaults:InputFocusOptions = {
             enter: false,
             tab: false,
@@ -243,7 +243,7 @@ module JQueryInputFocus {
     };
 
     $.fn.inputFocusFirst = function ():any {
-        var $elements = <JQuery> this;
+        var $elements = <JQuery>this;
         focusFirst($elements);
         return this;
     };
