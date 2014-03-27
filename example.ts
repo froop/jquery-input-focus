@@ -11,9 +11,9 @@ module ExampleMain {
     });
 
     $("#single-input-form").inputFocus({
-        enter : true
+        enter: true
     }).css({
-        backgroundColor : "lightgray"
+        backgroundColor: "lightgray"
     });
 
     $("#focus-link").on("click", function () {
