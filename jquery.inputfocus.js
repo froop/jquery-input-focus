@@ -67,7 +67,7 @@
 		guard = j;
 		do {
 			var $input = $($inputs[j]);
-			if	(isFocusable($input)) {
+			if (isFocusable($input)) {
 				//対象のオブジェクトを戻す
 				return $input;
 			}
@@ -97,12 +97,12 @@
 	$.fn.inputFocus = function (options) {
 		var $elements = this;
 		var defaults = {
-			"enter" : false,
-			"tab" : false,
-			"upDown" : false,
-			"leftRight" : false,
-			"focusFirst" : false,
-			"loop" : true
+			"enter": false,
+			"tab": false,
+			"upDown": false,
+			"leftRight": false,
+			"focusFirst": false,
+			"loop": true
 		};
 		var setting = $.extend(defaults, options);
 
@@ -131,6 +131,7 @@
 				function isKeyUpDown() {
 					return keyCode === KEY_UP || keyCode === KEY_DOWN;
 				}
+
 				function isKeyLeftRight() {
 					return keyCode === KEY_LEFT || keyCode === KEY_RIGHT;
 				}
@@ -191,7 +192,7 @@
 			}
 
 			//IEのみ問題回避
-			if(navigator.userAgent.match(/MSIE/i)) {
+			if (navigator.userAgent.match(/MSIE/i)) {
 				//次フォーカスがtext以外だと選択範囲の青色が残るため解除
 				if (type === "text" || type === "password") {
 					var deselectTextForIE = function () {
