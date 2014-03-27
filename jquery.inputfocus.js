@@ -11,6 +11,7 @@
 */
 /*global jQuery, window */
 /// <reference path="d.ts/jquery.d.ts" />
+
 (function ($) {
     "use strict";
 
@@ -90,12 +91,12 @@
     $.fn.inputFocus = function (options) {
         var $elements = this;
         var defaults = {
-            "enter": false,
-            "tab": false,
-            "upDown": false,
-            "leftRight": false,
-            "focusFirst": false,
-            "loop": true
+            enter: false,
+            tab: false,
+            upDown: false,
+            leftRight: false,
+            focusFirst: false,
+            loop: true
         };
         var setting = $.extend(defaults, options);
 

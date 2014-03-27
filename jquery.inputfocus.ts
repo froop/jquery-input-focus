@@ -100,12 +100,12 @@
     $.fn.inputFocus = function (options:any):any {
         var $elements = <JQuery> this;
         var defaults = {
-            "enter": false,
-            "tab": false,
-            "upDown": false,
-            "leftRight": false,
-            "focusFirst": false,
-            "loop": true
+            enter: false,
+            tab: false,
+            upDown: false,
+            leftRight: false,
+            focusFirst: false,
+            loop: true
         };
         var setting = $.extend(defaults, options);
 
