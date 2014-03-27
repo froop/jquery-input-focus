@@ -48,30 +48,6 @@
 
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 	<script type="text/javascript" src="jquery.inputfocus.js"></script>
-	<script type="text/javascript">
-		$("#form1").inputFocus({
-			enter : true,
-			tab : true,
-			upDown : true,
-			leftRight : true,
-			focusFirst : true
-		});
-
-		$("#single-input-form").inputFocus({
-			enter : true
-		}).css({
-			backgroundColor : "lightgray"
-		});
-
-		$("#focus-link").on("click", function () {
-			$('#single-input-form')
-				.inputFocusFirst()
-				.css({
-					backgroundColor: "yellow"
-				});
-		})
-
-		$("#empty-form").inputFocusFirst();
-	</script>
+	<script type="text/javascript" src="example.js"></script>
 </body>
 </html>

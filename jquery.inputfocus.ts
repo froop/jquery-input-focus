@@ -28,6 +28,11 @@ interface InputFocusOptions {
     loop?: boolean;
 }
 
+interface JQuery {
+    inputFocus(options:InputFocusOptions): JQuery;
+    inputFocusFirst(): JQuery;
+}
+
 (function ($:JQueryStatic) {
     "use strict";
 
