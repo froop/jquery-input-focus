@@ -11,7 +11,7 @@
  */
 /*global jQuery, window */
 /// <reference path="d.ts/jquery.d.ts" />
-(function ($) {
+(function ($:JQueryStatic) {
     "use strict";
 
     var KEY_TAB = 9,
@@ -22,7 +22,7 @@
         KEY_DOWN = 40;
 
     // http://d.hatena.ne.jp/tubureteru/20110101/p1
-    function getCaretPos(item) {
+    function getCaretPos(item:HTMLInputElement) {
         var caretPos = 0;
         if (document.selection) {
             // IE
@@ -37,7 +37,7 @@
         return caretPos;
     }
 
-    function isFocusable($input) {
+    function isFocusable($input:JQuery) {
         return $input.is(":visible") &&
             $input.is(":enabled") &&
             $input.css("visibility") !== "hidden" &&
@@ -46,7 +46,7 @@
             !$input.prop("readonly");
     }
 
-    function findNextFocusByIndex($inputs, reverse, loop, baseIdx) {
+    function findNextFocusByIndex($inputs:JQuery, reverse, loop, baseIdx) {
         var ln = $inputs.length,
             j, guard;
 
@@ -80,7 +80,7 @@
         return null;
     }
 
-    function focus($target) {
+    function focus($target:JQuery) {
         // 移動先でkeydownが起こらないようにsetTimeoutする。Firefoxのみの問題
         setTimeout(function () {
             $target.focus();
@@ -90,7 +90,7 @@
         }, 0);
     }
 
-    function focusFirst($parent) {
+    function focusFirst($parent:JQuery) {
         var $first = findNextFocusByIndex($(":input", $parent), false, true, -1);
         if ($first) {
             focus($first);
@@ -220,7 +220,7 @@
     };
 
     $.fn.inputFocusFirst = function () {
-        var $elements = this;
+        var $elements = <JQuery> this;
         focusFirst($elements);
         return this;
     };

@@ -119,6 +119,7 @@
                 function isKeyUpDown() {
                     return keyCode === KEY_UP || keyCode === KEY_DOWN;
                 }
+
                 function isKeyLeftRight() {
                     return keyCode === KEY_LEFT || keyCode === KEY_RIGHT;
                 }
