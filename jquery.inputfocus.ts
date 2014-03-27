@@ -10,7 +10,18 @@
  * The MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 /*global jQuery, window */
+
 /// <reference path="d.ts/jquery.d.ts" />
+
+interface InputFocusOptions {
+    enter?: boolean;
+    tab?: boolean;
+    upDown?: boolean;
+    leftRight?: boolean;
+    focusFirst?: boolean;
+    loop?: boolean;
+}
+
 (function ($:JQueryStatic) {
     "use strict";
 
@@ -97,9 +108,9 @@
         }
     }
 
-    $.fn.inputFocus = function (options:any):any {
+    $.fn.inputFocus = function (options:InputFocusOptions):any {
         var $elements = <JQuery> this;
-        var defaults = {
+        var defaults:InputFocusOptions = {
             enter: false,
             tab: false,
             upDown: false,
