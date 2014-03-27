@@ -28,7 +28,7 @@
 			var Sel = document.selection.createRange();
 			Sel.moveStart("character", -item.value.length);
 			caretPos = Sel.text.length;
-		} else if (item.selectionStart || item.selectionStart === "0") { // Firefox, Chrome
+		} else if (item.selectionStart || item.selectionStart === 0) { // Firefox, Chrome
 			caretPos = item.selectionStart;
 		}
 		return caretPos;
