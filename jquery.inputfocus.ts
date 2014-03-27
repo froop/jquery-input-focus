@@ -14,11 +14,17 @@
 /// <reference path="d.ts/jquery.d.ts" />
 
 interface InputFocusOptions {
+    /** By Enter Key */
     enter?: boolean;
+    /** By Tab Key */
     tab?: boolean;
+    /** By Arrow Up Down Key */
     upDown?: boolean;
+    /** By Arrow Left Right Key */
     leftRight?: boolean;
+    /** Focus First Element on Page Load */
     focusFirst?: boolean;
+    /** Loop Focus */
     loop?: boolean;
 }
 
