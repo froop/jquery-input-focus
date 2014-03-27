@@ -22,7 +22,7 @@
         KEY_DOWN = 40;
 
     // http://d.hatena.ne.jp/tubureteru/20110101/p1
-    function getCaretPos(item:HTMLInputElement) {
+    function getCaretPos(item:HTMLInputElement):number {
         var caretPos = 0;
         if (document.selection) {
             // IE
@@ -37,7 +37,7 @@
         return caretPos;
     }
 
-    function isFocusable($input:JQuery) {
+    function isFocusable($input:JQuery):boolean {
         return $input.is(":visible") &&
             $input.is(":enabled") &&
             $input.css("visibility") !== "hidden" &&
@@ -46,17 +46,17 @@
             !$input.prop("readonly");
     }
 
-    function findNextFocusByIndex($inputs:JQuery, reverse, loop, baseIdx) {
-        var ln = $inputs.length,
-            j, guard;
+    function findNextFocusByIndex($inputs:JQuery, reverse:boolean, loop:boolean, baseIdx:number):JQuery {
+        var ln:number = $inputs.length,
+            j:number, guard:number;
 
         if (ln === 0) {
             return null;
         }
 
-        function toNextIndex(before) {
-            var mv = (reverse ? -1 : 1);
-            var next = before + mv;
+        function toNextIndex(before:number) {
+            var mv:number = (reverse ? -1 : 1);
+            var next:number = before + mv;
             if (next >= 0 && next < ln) {
                 return next;
             } else if (loop) {
@@ -69,7 +69,7 @@
         j = toNextIndex(baseIdx);
         guard = j;
         do {
-            var $input = $($inputs[j]);
+            var $input:JQuery = $($inputs[j]);
             if (isFocusable($input)) {
                 //対象のオブジェクトを戻す
                 return $input;
@@ -80,9 +80,9 @@
         return null;
     }
 
-    function focus($target:JQuery) {
+    function focus($target:JQuery):void {
         // 移動先でkeydownが起こらないようにsetTimeoutする。Firefoxのみの問題
-        setTimeout(function () {
+        setTimeout(function ():void {
             $target.focus();
             if ($target.select && !$target.is(":button")) {
                 $target.select();
@@ -90,15 +90,15 @@
         }, 0);
     }
 
-    function focusFirst($parent:JQuery) {
-        var $first = findNextFocusByIndex($(":input", $parent), false, true, -1);
+    function focusFirst($parent:JQuery):void {
+        var $first:JQuery = findNextFocusByIndex($(":input", $parent), false, true, -1);
         if ($first) {
             focus($first);
         }
     }
 
-    $.fn.inputFocus = function (options) {
-        var $elements:JQuery = <JQuery> this;
+    $.fn.inputFocus = function (options:any):any {
+        var $elements = <JQuery> this;
         var defaults = {
             "enter": false,
             "tab": false,
@@ -109,16 +109,16 @@
         };
         var setting = $.extend(defaults, options);
 
-        $elements.on("keydown", function (event) {
-            var $inputs = $(":input", $elements),
-                keyCode = event.keyCode,
-                shiftKey = event.shiftKey,
+        $elements.on("keydown", function (event:JQueryEventObject):boolean {
+            var $inputs:JQuery = $(":input", $elements),
+                keyCode:number = event.keyCode,
+                shiftKey:boolean = event.shiftKey,
                 target:HTMLInputElement = <HTMLInputElement> event.target,
-                type = target.type,
-                $next = null;
+                type:string = target.type,
+                $next:JQuery = null;
 
             // 次のフォーカス可能要素を探す
-            function findNextFocusOnKeydown() {
+            function findNextFocusOnKeydown():JQuery {
                 var reverse = shiftKey || keyCode === KEY_LEFT || keyCode === KEY_UP;
                 var ln = $inputs.length;
                 var i;
@@ -130,16 +130,16 @@
                 return findNextFocusByIndex($inputs, reverse, setting.loop, i);
             }
 
-            function isMoveFocus() {
-                function isKeyUpDown() {
+            function isMoveFocus():boolean {
+                function isKeyUpDown():boolean {
                     return keyCode === KEY_UP || keyCode === KEY_DOWN;
                 }
 
-                function isKeyLeftRight() {
+                function isKeyLeftRight():boolean {
                     return keyCode === KEY_LEFT || keyCode === KEY_RIGHT;
                 }
 
-                function isMoveFocusKey() {
+                function isMoveFocusKey():boolean {
                     if (setting.enter && keyCode === KEY_ENTER) {
                         return true;
                     }
@@ -156,7 +156,7 @@
                 }
 
                 // 現フォーカス要素がフォーカス移動に対応するか
-                function isMoveFocusField() {
+                function isMoveFocusField():boolean {
                     if (!$(target).is(":input")) {
                         return false;
                     }
@@ -219,7 +219,7 @@
         return this;
     };
 
-    $.fn.inputFocusFirst = function () {
+    $.fn.inputFocusFirst = function ():any {
         var $elements = <JQuery> this;
         focusFirst($elements);
         return this;
