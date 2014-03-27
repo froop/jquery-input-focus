@@ -3,11 +3,11 @@
 module ExampleMain {
 
     $("#form1").inputFocus({
-        enter : true,
-        tab : true,
-        upDown : true,
-        leftRight : true,
-        focusFirst : true
+        enter: true,
+        tab: true,
+        upDown: true,
+        leftRight: true,
+        focusFirst: true
     });
 
     $("#single-input-form").inputFocus({
