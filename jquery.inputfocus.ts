@@ -33,9 +33,10 @@ interface JQuery {
     inputFocusFirst(): JQuery;
 }
 
-(function ($:JQueryStatic) {
+module JQueryInputFocus {
     "use strict";
 
+    var $ = <JQueryStatic>jQuery;
     var KEY_TAB = 9,
         KEY_ENTER = 13,
         KEY_LEFT = 37,
@@ -246,4 +247,4 @@ interface JQuery {
         focusFirst($elements);
         return this;
     };
-})(jQuery);
+}

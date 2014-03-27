@@ -12,9 +12,11 @@
 /*global jQuery, window */
 /// <reference path="d.ts/jquery.d.ts" />
 
-(function ($) {
+var JQueryInputFocus;
+(function (JQueryInputFocus) {
     "use strict";
 
+    var $ = jQuery;
     var KEY_TAB = 9, KEY_ENTER = 13, KEY_LEFT = 37, KEY_UP = 38, KEY_RIGHT = 39, KEY_DOWN = 40;
 
     // http://d.hatena.ne.jp/tubureteru/20110101/p1
@@ -211,5 +213,5 @@
         focusFirst($elements);
         return this;
     };
-})(jQuery);
+})(JQueryInputFocus || (JQueryInputFocus = {}));
 //# sourceMappingURL=jquery.inputfocus.js.map
